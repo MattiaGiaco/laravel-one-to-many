@@ -4,6 +4,11 @@
 <div class="container">
     <div class="my-5">
         <h1>{{ $post->title }}</h1>
+
+        @if ($post->category)
+          <h3>Categoria: {{ $post->category->name }}</h3>
+        @endif
+
         <p>
           {{ $post->content }}
         </p>     

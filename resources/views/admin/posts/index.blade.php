@@ -24,6 +24,11 @@
               <tr>
                 <th scope="row">{{ $post->id }}</th>
                 <td>{{ $post->title }}</td>
+                @if ($post->category)
+                  <td>{{ $post->category->name }}</td>
+                @else
+                  <td>-</td>
+                @endif               
                 <td><a href="{{ route('admin.post.show', $post) }}" class="btn btn-info">SHOW</a></td>
                 <td><a href="{{ route('admin.post.edit', $post) }}" class="btn btn-success">EDIT</a></td>
                 <td>
@@ -39,6 +44,19 @@
         </table>
         {{$posts->links()}}
     </div>
+
+    @foreach ($categories as $category)
+      <h2>{{ $category->name }}</h2>
+        <ul>
+          @foreach ($category->posts as $post_category)
+        
+            <li><a href="{{ route('admin.post.show', $post_category) }}">{{ $post_category->title }}</a></li>
+        
+          @endforeach
+        </ul>
+    @endforeach
+    
+    
 </div>
 @endsection
 
